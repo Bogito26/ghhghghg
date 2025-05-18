@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h2 class="mb-4">Login</h2>
+    <?php if(isset($_GET['error'])): ?>
+        <div class="alert alert-danger"><?=htmlspecialchars($_GET['error'])?></div>
+    <?php endif; ?>
+    <?php if(isset($_GET['success'])): ?>
+        <div class="alert alert-success">Registration successful! Please login.</div>
+    <?php endif; ?>
+    <form method="post" action="login_process.php">
+        <div class="mb-3">
+            <label>Email</label>
+            <input type="email" class="form-control" name="email" required maxlength="100">
+        </div>
+        <div class="mb-3">
+            <label>Password</label>
+            <input type="password" class="form-control" id="password" name="password" required minlength="6">
+            <div class="form-check mt-2">
+                <input class="form-check-input" type="checkbox" id="showPassword" onclick="togglePassword()">
+                <label class="form-check-label" for="showPassword">Show Password</label>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+        <a href="register.php" class="btn btn-link">Register</a>
+    </form>
+</div>
+<script>
+function togglePassword() {
+    const pw = document.getElementById("password");
+    pw.type = pw.type === "password" ? "text" : "password";
+}
+</script>
+</body>
+</html>
